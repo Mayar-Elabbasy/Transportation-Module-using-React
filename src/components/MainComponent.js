@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { fetchTransportationCompanies } from '../redux/ActionCreators';
+import { fetchTransportationCompanies, postNewTransportationCompany } from '../redux/ActionCreators';
+import { actions } from 'react-redux-form';
 import AllTransportationCompaniesComponent from './AllTransportationCompaniesComponent';
+import AddTransportationCompanyComponent from './AddTransportationCompanyComponent';
 import MainNavbar from '../shared/navbar';
 
 const mapStateToProps = state => {
@@ -13,6 +15,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   fetchTransportationCompanies: () => { dispatch(fetchTransportationCompanies())}, 
+  postNewTransportationCompany: (ID, Name, Address, Country, City, TelephoneNumber,
+  ContactPerson_Name, ContactPerson_TelephoneNumber, ContactPerson_Email,
+  TransportationCompanyBuses) => 
+                  dispatch(postNewTransportationCompany(ID, Name, Address, Country, City, TelephoneNumber,
+  ContactPerson_Name, ContactPerson_TelephoneNumber, ContactPerson_Email,
+  TransportationCompanyBuses)),
+  resetForm: () => { dispatch(actions.reset('newTransportationCompany'))},
 });
 
 class MainComponent extends Component {
@@ -28,6 +37,11 @@ class MainComponent extends Component {
         <div>
           <MainNavbar />
           <Switch>
+            <Route exact path='/AddTransportationCompanyComponent' 
+            component={() => <AddTransportationCompanyComponent 
+            resetForm={this.props.resetForm} 
+            postNewTransportationCompany={this.props.postNewTransportationCompany} />} />
+
             <Route path='/' component={() => <AllTransportationCompaniesComponent 
             transportationCompanies={this.props.transportationCompanies.transportationCompanies}
             isLoading={this.props.transportationCompanies.isLoading}

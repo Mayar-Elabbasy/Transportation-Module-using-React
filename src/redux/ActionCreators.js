@@ -36,4 +36,51 @@ export const addTransportationCompanies = (transportationCompanies) => ({
     payload: transportationCompanies
 });
 
+export const addTransportationCompany = (transportationCompany) => ({
+    type: ActionTypes.ADD_New_Transportation_Company, 
+    payload : transportationCompany
+});
+
+export const postNewTransportationCompany = ( ID, Name, Address, Country, City, TelephoneNumber,
+                                              ContactPerson_Name, ContactPerson_TelephoneNumber, 
+                                              ContactPerson_Email,TransportationCompanyBuses ) =>
+  (dispatch) => {
+    
+    const newTransportationCompany = {
+      ID: ID,
+      Name: Name,
+      Address: Address,
+      Country: Country,
+      City: City,
+      TelephoneNumber: TelephoneNumber,
+      ContactPerson_Name: ContactPerson_Name,
+      ContactPerson_TelephoneNumber: ContactPerson_TelephoneNumber,
+      ContactPerson_Email: ContactPerson_Email,
+      TransportationCompanyBuses: TransportationCompanyBuses
+    };
+  
+  return fetch(baseUrl + 'TransportationCompany/Add', {
+      method: "POST",
+      body: JSON.stringify(newTransportationCompany),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+      error => {
+            throw error;
+    })
+    .then(response => { dispatch(addTransportationCompany(response));
+      alert(response)})
+    .catch(error =>  { alert('Your Company could not be added\nError: '+error.message); });
+  };
 

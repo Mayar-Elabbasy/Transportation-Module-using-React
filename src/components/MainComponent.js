@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { fetchTransportationCompanies } from '../redux/ActionCreators';
 import AllTransportationCompaniesComponent from './AllTransportationCompaniesComponent';
+import MainNavbar from '../shared/navbar';
 
 const mapStateToProps = state => {
   return {
@@ -25,6 +26,7 @@ class MainComponent extends Component {
     return (
       <React.Fragment>
         <div>
+          <MainNavbar />
           <Switch>
             <Route path='/' component={() => <AllTransportationCompaniesComponent 
             transportationCompanies={this.props.transportationCompanies.transportationCompanies}

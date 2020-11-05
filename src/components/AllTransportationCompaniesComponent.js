@@ -1,13 +1,14 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import { BsFillGearFill } from "react-icons/bs";
+import { Loading } from './LoadingComponent';
 
 const AllTransportationCompaniesComponent = (props) => {
     if (props.isLoading) {
         return(
             <div className="container">
                 <div className="row">            
-                    <h1>Loading------</h1>
+                    <Loading />
                 </div>
             </div>
         );

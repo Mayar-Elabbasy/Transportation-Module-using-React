@@ -8,7 +8,7 @@ export const TransportationCompanies = (state = {
     switch (action.type) {
         case ActionTypes.ADD_Transportation_Company:
             return {...state, isLoading: false, errMessage: null,
-                     transportationCompanies: action.payload
+                     transportationCompanies: action.payload.Data
                     };
 
         case ActionTypes.Transportation_Company_LOADING:
@@ -21,5 +21,6 @@ export const TransportationCompanies = (state = {
         default:
             return state;
     }
+    
     
 };

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { fetchTransportationCompanies } from '../redux/ActionCreators';
+import AllTransportationCompaniesComponent from './AllTransportationCompaniesComponent';
 
 const mapStateToProps = state => {
   return {
-    ID: state.ID,
-    Name: state.Name,
-    TotalFleet: state.TotalFleet,
+    transportationCompanies: state.transportationCompanies,
   }
 }
 
@@ -21,14 +21,26 @@ class MainComponent extends Component {
   }
 
   render() {
+    // console.log(this.props.transportationCompanies.transportationCompanies);
     return (
       <React.Fragment>
         <div>
-          <h4>Test ( Check Transportation Companies in console ^_^ )</h4>
+          <Switch>
+            <Route path='/' component={() => <AllTransportationCompaniesComponent 
+            transportationCompanies={this.props.transportationCompanies.transportationCompanies}
+            isLoading={this.props.transportationCompanies.isLoading}
+            errMess={this.props.transportationCompanies.errMessage} />} />
+
+            <Route exact path='/AllTransportationCompanies' component={() => <AllTransportationCompaniesComponent 
+            transportationCompanies={this.props.transportationCompanies.transportationCompanies}
+            isLoading={this.props.transportationCompanies.isLoading}
+            errMess={this.props.transportationCompanies.errMessage} />} />
+            <Redirect to="/" />
+          </Switch>
         </div> 
       </React.Fragment>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainComponent));

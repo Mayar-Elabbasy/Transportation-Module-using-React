@@ -1,7 +1,8 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
-import { BsFillGearFill } from "react-icons/bs";
+import { BsFillGearFill, BsPlus } from "react-icons/bs";
 import { Loading } from './LoadingComponent';
+import { Link } from 'react-router-dom';
 
 const AllTransportationCompaniesComponent = (props) => {
     if (props.isLoading) {
@@ -28,6 +29,17 @@ const AllTransportationCompaniesComponent = (props) => {
         return ( 
             <div className="container">
                 <div className="row mt-1">
+                    <Link to={`/AddTransportationCompany`}>
+                        <Button className="mt-4" 
+                                style={{ backgroundColor: "#2774AE", color: "white",
+                                         fontWeight: "bold", textAlign: "center",
+                                         textDecoration: "none",fontSize: "18px",
+                                         display: "inline-block", 
+                                         padding: "10px 60px 10px 60px" }}> 
+                        <span style={{marginRight: "20px"}}><BsPlus size={30} /></span>
+                                                     Add Transportations 
+                        </Button>
+                    </Link>
                     <Table striped style={{ padding: "10px", marginTop: "20px" }}>
                         <thead style={{backgroundColor: "#2774AE" , color: "white"}}>
                             <tr style={{textAlign: "center"}}>

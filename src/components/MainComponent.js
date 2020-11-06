@@ -52,7 +52,7 @@ class MainComponent extends Component {
         <div>
           <MainNavbar />
           <Switch>
-            <Route exact path='/AddTransportationCompanyComponent' 
+            <Route exact path='/AddTransportationCompany' 
             component={() => <AddTransportationCompanyComponent 
             countries={this.props.countries.countries}
             cities={this.props.cities.cities}

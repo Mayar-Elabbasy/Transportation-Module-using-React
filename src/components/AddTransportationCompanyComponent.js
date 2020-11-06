@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Label, Row, Col,} from 'reactstrap';
+import { Button, Label, Row, Col, Card, CardTitle } from 'reactstrap';
 import { Control, Form, Errors } from 'react-redux-form';
 // import { baseUrl } from '../shared/baseUrl';
 // import axios from 'axios';
@@ -39,11 +39,8 @@ class AddTransportationCompanyComponent extends Component {
     const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
     // console.log(this.props); 
     return(
-        <div className="container px-5 py-5">
+        <div className="container px-4 py-4">
             <div className="row row-content">
-                <div className="col-12">
-                    <h3>Add New Transportation Company</h3>
-                </div>
                 <div className="col-12 col-md-12">
                     <Form model="newTransportationCompany" 
                     // onChange={(values)=> {
@@ -63,13 +60,17 @@ class AddTransportationCompanyComponent extends Component {
                     //         }); 
                     // }} 
                     onSubmit={(values) => this.handleSubmit(values)} onChange={(values)=> console.log(values.TransportationCompanyBuses[0])}>
+                    <Card body>
+                        <CardTitle tag="h5" className="text-info font-weight-bold">
+                            Company Data
+                        </CardTitle>
                         <Row className="form-group">
                             <Col md={2}>
                                 <Label htmlFor="ID" md={20}>Company ID #</Label>
                                 <Control.text model=".ID" id="ID" name="ID" 
                                     className="form-control" placeholder="Company ID #"
                                     validators={{
-                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                        required, minLength: minLength(1), maxLength: maxLength(15), isNumber
                                     }} />
                                 <Errors
                                     className="text-danger"
@@ -77,7 +78,7 @@ class AddTransportationCompanyComponent extends Component {
                                     show="touched"
                                     messages={{
                                         required: ' Required',
-                                        minLength: ' Must be greater than 2 numbers',
+                                        minLength: ' Must be 1 number at least',
                                         maxLength: ' Must be 15 numbers or less',
                                         isNumber: ' Must be a number'
                                     }} />
@@ -128,7 +129,7 @@ class AddTransportationCompanyComponent extends Component {
                                 </Control.select>
                             </Col>  
                             <Col md={2}>
-                                <Label htmlFor="City" md={2}>City</Label>
+                                <Label htmlFor="City" md={20}>City</Label>
                                 <Control.select model=".City" name="City" className="form-control">
                                     {this.props.cities.map((city)=> { return (
                                         <option style={{textAlign: "center"}} key={city.ID}
@@ -139,6 +140,7 @@ class AddTransportationCompanyComponent extends Component {
                                 </Control.select>
                             </Col>  
                         </Row>
+                        
                         <Row className="form-group">
                             <Col md={2}>
                                 <Label htmlFor="TelephoneNumber" md={20}>Company Telephone</Label>
@@ -221,7 +223,12 @@ class AddTransportationCompanyComponent extends Component {
                                 </Button>
                             </Col>
                         </Row>
+                    </Card>
                         {/* Second Form */}
+                    <Card body className="mt-3">
+                        <CardTitle tag="h5" className="text-info font-weight-bold">
+                            Bus Data
+                        </CardTitle>
                         <Row className="form-group">
                             <Col md={2}>
                                 <Label htmlFor="Vehicle Type 1" md={20}>Vehicle Type 1</Label>
@@ -303,7 +310,7 @@ class AddTransportationCompanyComponent extends Component {
                                     id="Number_Of_Seats" name="Number_Of_Seats" 
                                     className="form-control" placeholder="Number_Of_Seats"
                                     validators={{
-                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                        required, minLength: minLength(1), maxLength: maxLength(15), isNumber
                                     }} />
                                 <Errors
                                     className="text-danger"
@@ -311,7 +318,7 @@ class AddTransportationCompanyComponent extends Component {
                                     show="touched"
                                     messages={{
                                         required: ' Required',
-                                        minLength: ' Must be greater than 2 numbers',
+                                        minLength: ' Must be 1 number at least',
                                         maxLength: ' Must be 15 numbers or less',
                                         isNumber: ' Must be a number'
                                     }} />
@@ -322,7 +329,7 @@ class AddTransportationCompanyComponent extends Component {
                                     id="Number_Of_Seats_Per_Raw" name="Number_Of_Seats_Per_Raw" 
                                     className="form-control" placeholder="Number Of Seats Per Raw"
                                     validators={{
-                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                        required, minLength: minLength(1), maxLength: maxLength(15), isNumber
                                     }} />
                                 <Errors
                                     className="text-danger"
@@ -330,7 +337,7 @@ class AddTransportationCompanyComponent extends Component {
                                     show="touched"
                                     messages={{
                                         required: ' Required',
-                                        minLength: ' Must be greater than 2 numbers',
+                                        minLength: ' Must be 1 number at least',
                                         maxLength: ' Must be 15 numbers or less',
                                         isNumber: ' Must be a number'
                                     }} />
@@ -341,7 +348,7 @@ class AddTransportationCompanyComponent extends Component {
                                     id="Total_Number_Of_Buses" name="Total_Number_Of_Buses" 
                                     className="form-control" placeholder="Total Number Of Buses"
                                     validators={{
-                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                        required, minLength: minLength(1), maxLength: maxLength(15), isNumber
                                     }} />
                                 <Errors
                                     className="text-danger"
@@ -349,7 +356,7 @@ class AddTransportationCompanyComponent extends Component {
                                     show="touched"
                                     messages={{
                                         required: ' Required',
-                                        minLength: ' Must be greater than 2 numbers',
+                                        minLength: ' Must be 1 number at least',
                                         maxLength: ' Must be 15 numbers or less',
                                         isNumber: ' Must be a number'
                                     }} />
@@ -381,6 +388,7 @@ class AddTransportationCompanyComponent extends Component {
                                 </Button>
                             </Col>
                         </Row>
+                    </Card>
                     </Form>
                 </div>
             </div>

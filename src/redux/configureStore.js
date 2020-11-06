@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { TransportationCompanies } from './TransportationCompanies';
 import { Countries } from './Countries';
+import { Cities } from './Cities';
 import { createForms } from 'react-redux-form';
 import { InitialTransportationCompany } from './forms';
 import thunk from 'redux-thunk';
@@ -11,8 +12,10 @@ export const ConfigureStore = () => {
         combineReducers({
             transportationCompanies: TransportationCompanies,
             countries: Countries,
+            cities: Cities,
             ...createForms({
-                newTransportationCompany: InitialTransportationCompany
+                newTransportationCompany: InitialTransportationCompany,
+                // Country: '',
             })
         }),
         applyMiddleware(thunk, logger)

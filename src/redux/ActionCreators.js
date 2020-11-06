@@ -122,3 +122,41 @@ export const addCountries = (countries) => ({
     payload: countries
 });
 
+// ============================Cities=============================================
+
+export const fetchCities = (countryId) => (dispatch) => {
+
+  dispatch(citiesLoading(true));
+
+  return fetch(baseUrl + `Lookup/GetCities?countryId=${countryId}`).then(response => {
+    console.log(response);
+    if (response.ok) {
+      return response;
+    } else {
+      let error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  },
+    error => {
+          let errMessage = new Error(error.message);
+          throw errMessage;
+    }).then(response => response.json())
+      .then(cities => dispatch(addCities(cities)))
+      .catch(error => dispatch(citiesFailed(error.message)));
+}
+  
+export const citiesLoading = () => ({
+    type: ActionTypes.Cities_LOADING
+});
+
+export const citiesFailed = (errMessage) => ({
+    type: ActionTypes.Cities_LOADING,
+    payload: errMessage
+});
+
+export const addCities = (cities) => ({
+    type: ActionTypes.ADD_Cities,
+    payload: cities
+});
+

@@ -3,7 +3,7 @@ export const InitialTransportationCompany = {
     Name: '',
     Address: '',
     Country: '1',
-    City: '',
+    City: '1',
     TelephoneNumber: '',
     ContactPerson_Name: '',
     ContactPerson_TelephoneNumber: '',

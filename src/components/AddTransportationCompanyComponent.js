@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { Button, Label, Row, Col,} from 'reactstrap';
 import { Control, Form, Errors } from 'react-redux-form';
+// import { baseUrl } from '../shared/baseUrl';
+// import axios from 'axios';
 
 class AddTransportationCompanyComponent extends Component {
-   
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         countryId: '1',
+    //         cities: []
+    //     }
+    // }
+
     handleSubmit = (values) =>{
         this.props.postNewTransportationCompany(values.ID, values.Name, values.Address, 
                                 values.Country, values.City, values.TelephoneNumber,
@@ -19,6 +28,7 @@ class AddTransportationCompanyComponent extends Component {
     const minLength = (len) => (val) => val && (val.length >= len);
     const isNumber = (val) => !isNaN(Number(val));
     const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+    console.log(this.state); 
     return(
         <div className="container px-5 py-5">
             <div className="row row-content">
@@ -26,7 +36,24 @@ class AddTransportationCompanyComponent extends Component {
                     <h3>Add New Transportation Company</h3>
                 </div>
                 <div className="col-12 col-md-12">
-                    <Form model="newTransportationCompany" onSubmit={(values) => this.handleSubmit(values)}>
+                    <Form model="newTransportationCompany" 
+                    // onChange={(values)=> {
+                    //     // this.props.fetchCities();
+                    //     this.setState({
+                    //             countryId: values.Country
+                    //         }) 
+                    //     axios.get(baseUrl + `Lookup/GetCities?countryId=${this.state.countryId}`)
+                    //     .then(res => {
+                    //             console.log(res.data.Data);
+                    //             this.setState({ 
+                    //                 cities: res.data.Data,
+                    //             })
+                                    
+                    //         }).catch(error => {
+                    //             console.log(error)
+                    //         }); 
+                    // }} 
+                    onSubmit={(values) => this.handleSubmit(values)}>
                         <Row className="form-group">
                             <Col md={2}>
                                 <Label htmlFor="ID" md={20}>Company ID #</Label>
@@ -94,8 +121,12 @@ class AddTransportationCompanyComponent extends Component {
                             <Col md={2}>
                                 <Label htmlFor="City" md={2}>City</Label>
                                 <Control.select model=".City" name="City" className="form-control">
-                                    <option>0</option>
-                                    <option>1</option>
+                                    {this.props.cities.map((city)=> { return (
+                                        <option style={{textAlign: "center"}} key={city.ID}
+                                                value={city.ID}>{city.Value}</option>
+                                                );
+                                            })
+                                        }
                                 </Control.select>
                             </Col>  
                         </Row>

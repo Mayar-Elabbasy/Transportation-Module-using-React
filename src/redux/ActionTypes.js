@@ -5,3 +5,6 @@ export const ADD_New_Transportation_Company = 'ADD_New_Transportation_Company';
 export const Countries_LOADING = 'Countries_LOADING';
 export const Countries_FAILED = 'Countries_FAILED';
 export const ADD_Countries = 'ADD_Countries';
+export const Cities_LOADING = 'Cities_LOADING';
+export const Cities_FAILED = 'Cities_FAILED';
+export const ADD_Cities = 'ADD_Cities';

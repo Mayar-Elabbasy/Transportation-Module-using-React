@@ -84,3 +84,41 @@ export const postNewTransportationCompany = ( ID, Name, Address, Country, City, 
     .catch(error =>  { alert('Your Company could not be added\nError: '+error.message); });
   };
 
+// ============================Countries=============================================
+
+export const fetchCountries = () => (dispatch) => {
+
+  dispatch(countriesLoading(true));
+
+  return fetch(baseUrl + 'Lookup/GetCountries').then(response => {
+    console.log(response);
+    if (response.ok) {
+      return response;
+    } else {
+      let error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  },
+    error => {
+          let errMessage = new Error(error.message);
+          throw errMessage;
+    }).then(response => response.json())
+      .then(countries => dispatch(addCountries(countries)))
+      .catch(error => dispatch(countriesFailed(error.message)));
+}
+  
+export const countriesLoading = () => ({
+    type: ActionTypes.Countries_LOADING
+});
+
+export const countriesFailed = (errMessage) => ({
+    type: ActionTypes.Countries_LOADING,
+    payload: errMessage
+});
+
+export const addCountries = (countries) => ({
+    type: ActionTypes.ADD_Countries,
+    payload: countries
+});
+

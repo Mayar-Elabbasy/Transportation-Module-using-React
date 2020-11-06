@@ -83,8 +83,12 @@ class AddTransportationCompanyComponent extends Component {
                             <Col md={2}>
                                 <Label htmlFor="Country" md={20}>Country</Label>
                                 <Control.select model=".Country" name="Country" className="form-control">
-                                    <option>0</option>
-                                    <option>1</option>
+                                    {this.props.countries.map((country)=> { return (
+                                    <option style={{textAlign: "center"}} key={country.ID}
+                                            value={country.ID}>{country.Value}</option>
+                                            );
+                                        })
+                                    }
                                 </Control.select>
                             </Col>  
                             <Col md={2}>

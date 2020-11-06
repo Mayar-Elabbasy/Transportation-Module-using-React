@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { fetchTransportationCompanies, postNewTransportationCompany } from '../redux/ActionCreators';
+import { fetchTransportationCompanies, postNewTransportationCompany,
+         fetchCountries } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import AllTransportationCompaniesComponent from './AllTransportationCompaniesComponent';
 import AddTransportationCompanyComponent from './AddTransportationCompanyComponent';
@@ -10,6 +11,7 @@ import MainNavbar from '../shared/navbar';
 const mapStateToProps = state => {
   return {
     transportationCompanies: state.transportationCompanies,
+    countries: state.countries
   }
 }
 
@@ -22,12 +24,14 @@ const mapDispatchToProps = dispatch => ({
   ContactPerson_Name, ContactPerson_TelephoneNumber, ContactPerson_Email,
   TransportationCompanyBuses)),
   resetForm: () => { dispatch(actions.reset('newTransportationCompany'))},
+  fetchCountries: () => { dispatch(fetchCountries())}, 
 });
 
 class MainComponent extends Component {
 
   componentDidMount() {
     this.props.fetchTransportationCompanies();
+    this.props.fetchCountries();
   }
 
   render() {
@@ -39,6 +43,7 @@ class MainComponent extends Component {
           <Switch>
             <Route exact path='/AddTransportationCompanyComponent' 
             component={() => <AddTransportationCompanyComponent 
+            countries={this.props.countries.countries}
             resetForm={this.props.resetForm} 
             postNewTransportationCompany={this.props.postNewTransportationCompany} />} />
 

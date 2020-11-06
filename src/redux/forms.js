@@ -2,7 +2,7 @@ export const InitialTransportationCompany = {
     ID: '',
     Name: '',
     Address: '',
-    Country: '',
+    Country: '1',
     City: '',
     TelephoneNumber: '',
     ContactPerson_Name: '',

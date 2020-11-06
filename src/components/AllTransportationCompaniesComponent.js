@@ -40,8 +40,8 @@ const AllTransportationCompaniesComponent = (props) => {
                             </tr>
                         </thead>
                         {props.transportationCompanies.map((transportationCompany)=> { return (
-                        <tbody>
-                            <tr key={transportationCompany.ID} style={{textAlign: "center"}}>
+                        <tbody key={transportationCompany.ID}>
+                            <tr style={{textAlign: "center"}}>
                                 <th scope="row" style={{textAlign: "center"}}>
                                     {transportationCompany.ID}
                                 </th>

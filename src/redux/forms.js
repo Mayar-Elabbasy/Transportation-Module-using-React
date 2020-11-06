@@ -9,7 +9,7 @@ export const InitialTransportationCompany = {
     ContactPerson_TelephoneNumber: '',
     ContactPerson_Email: '',
     TransportationCompanyBuses: [{
-      BusTypeID: '1',
+      BusTypeID: '2',
       Brand: '',
       YearModel: '',
       Description: '',

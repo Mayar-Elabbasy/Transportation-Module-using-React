@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { TransportationCompanies } from './TransportationCompanies';
 import { Countries } from './Countries';
 import { Cities } from './Cities';
+import { VehicleTypes } from './VehicleTypes';
 import { createForms } from 'react-redux-form';
 import { InitialTransportationCompany } from './forms';
 import thunk from 'redux-thunk';
@@ -13,6 +14,7 @@ export const ConfigureStore = () => {
             transportationCompanies: TransportationCompanies,
             countries: Countries,
             cities: Cities,
+            vehicleTypes: VehicleTypes,
             ...createForms({
                 newTransportationCompany: InitialTransportationCompany,
                 // Country: '',

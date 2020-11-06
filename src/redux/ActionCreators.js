@@ -118,11 +118,11 @@ export const fetchCountries = () => (dispatch) => {
 }
   
 export const countriesLoading = () => ({
-    type: ActionTypes.Countries_LOADING
+    type: ActionTypes.Vehicle_Types_LOADING
 });
 
 export const countriesFailed = (errMessage) => ({
-    type: ActionTypes.Countries_LOADING,
+    type: ActionTypes.Vehicle_Types_LOADING,
     payload: errMessage
 });
 
@@ -169,3 +169,40 @@ export const addCities = (cities) => ({
     payload: cities
 });
 
+// ============================VehicleTypes=============================================
+
+export const fetchVehicleTypes = () => (dispatch) => {
+
+  dispatch(vehicleTypesLoading(true));
+
+  return fetch(baseUrl + 'Lookup/GetVehicleType').then(response => {
+    console.log(response);
+    if (response.ok) {
+      return response;
+    } else {
+      let error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  },
+    error => {
+          let errMessage = new Error(error.message);
+          throw errMessage;
+    }).then(response => response.json())
+      .then(vehicleTypes => dispatch(addVehicleTypes(vehicleTypes)))
+      .catch(error => dispatch(vehicleTypesFailed(error.message)));
+}
+
+export const vehicleTypesLoading = () => ({
+    type: ActionTypes.Vehicle_Types_LOADING
+});
+
+export const vehicleTypesFailed = (errMessage) => ({
+    type: ActionTypes.Vehicle_Types_FAILED,
+    payload: errMessage
+});
+
+export const addVehicleTypes = (vehicleTypes) => ({
+    type: ActionTypes.ADD_Vehicle_Types,
+    payload: vehicleTypes
+});

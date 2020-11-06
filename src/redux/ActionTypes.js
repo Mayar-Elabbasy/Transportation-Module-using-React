@@ -8,3 +8,6 @@ export const ADD_Countries = 'ADD_Countries';
 export const Cities_LOADING = 'Cities_LOADING';
 export const Cities_FAILED = 'Cities_FAILED';
 export const ADD_Cities = 'ADD_Cities';
+export const Vehicle_Types_LOADING = 'Vehicle_Types_LOADING';
+export const Vehicle_Types_FAILED = 'Vehicle_Types_FAILED';
+export const ADD_Vehicle_Types = 'ADD_Vehicle_Types';

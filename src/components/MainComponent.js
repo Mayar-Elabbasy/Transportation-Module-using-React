@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { fetchTransportationCompanies, postNewTransportationCompany,
-         fetchCountries, fetchCities } from '../redux/ActionCreators';
+         fetchCountries, fetchCities, fetchVehicleTypes } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import AllTransportationCompaniesComponent from './AllTransportationCompaniesComponent';
 import AddTransportationCompanyComponent from './AddTransportationCompanyComponent';
@@ -14,6 +14,7 @@ const mapStateToProps = state => {
     transportationCompanies: state.transportationCompanies,
     countries: state.countries,
     cities: state.cities,
+    vehicleTypes: state.vehicleTypes
   }
 }
 
@@ -30,6 +31,7 @@ const mapDispatchToProps = dispatch => ({
   resetForm: () => { dispatch(actions.reset('newTransportationCompany'))},
   fetchCountries: () => { dispatch(fetchCountries())}, 
   fetchCities: () => { dispatch(fetchCities(1))}, 
+  fetchVehicleTypes: () => { dispatch(fetchVehicleTypes())}, 
 });
 
 class MainComponent extends Component {
@@ -38,6 +40,7 @@ class MainComponent extends Component {
     this.props.fetchTransportationCompanies();
     this.props.fetchCountries();
     this.props.fetchCities(1);
+    this.props.fetchVehicleTypes();
     // this.props.change('newTransportationCompany.Country')
     // this.props.dispatch(change('Country'));
   }
@@ -53,6 +56,7 @@ class MainComponent extends Component {
             component={() => <AddTransportationCompanyComponent 
             countries={this.props.countries.countries}
             cities={this.props.cities.cities}
+            vehicleTypes={this.props.vehicleTypes.vehicleTypes}
             resetForm={this.props.resetForm} 
             postNewTransportationCompany={this.props.postNewTransportationCompany} />} />
 

@@ -27,8 +27,8 @@ class AddTransportationCompanyComponent extends Component {
                                 values.TransportationCompanyBuses[0].Total_Number_Of_Buses,
                                 values.TransportationCompanyBuses[0].Notes,   
                                 );
-                                alert(JSON.stringify(values))
-        // this.props.resetForm();
+        alert(JSON.stringify(values))
+        this.props.resetForm();
     }
 
     render(){
@@ -227,7 +227,12 @@ class AddTransportationCompanyComponent extends Component {
                                 <Label htmlFor="Vehicle Type 1" md={20}>Vehicle Type 1</Label>
                                 <Control.select model=".TransportationCompanyBuses.0.BusTypeID" 
                                     name="BusTypeID" className="form-control">
-                                    <option value="1">1</option>
+                                    {this.props.vehicleTypes.map((vehicleType)=> { return (
+                                    <option style={{textAlign: "center"}} key={vehicleType.ID}
+                                            value={vehicleType.ID}>{vehicleType.Value}</option>
+                                            );
+                                        })
+                                    }
                                 </Control.select>
                                 <Errors
                                     className="text-danger"

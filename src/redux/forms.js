@@ -8,5 +8,14 @@ export const InitialTransportationCompany = {
     ContactPerson_Name: '',
     ContactPerson_TelephoneNumber: '',
     ContactPerson_Email: '',
-    TransportationCompanyBuses: []
+    TransportationCompanyBuses: [{
+      BusTypeID: '1',
+      Brand: '',
+      YearModel: '',
+      Description: '',
+      Number_Of_Seats: '',
+      Number_Of_Seats_Per_Raw: '',
+      Total_Number_Of_Buses: '',
+      Notes: '',
+    }]
 };

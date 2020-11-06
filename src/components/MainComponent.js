@@ -9,7 +9,7 @@ import AddTransportationCompanyComponent from './AddTransportationCompanyCompone
 import MainNavbar from '../shared/navbar';
 
 const mapStateToProps = state => {
-  // console.log(state);
+  // console.log(state.forms.newTransportationCompany.Country.value);
   return {
     transportationCompanies: state.transportationCompanies,
     countries: state.countries,
@@ -21,10 +21,12 @@ const mapDispatchToProps = dispatch => ({
   fetchTransportationCompanies: () => { dispatch(fetchTransportationCompanies())}, 
   postNewTransportationCompany: (ID, Name, Address, Country, City, TelephoneNumber,
   ContactPerson_Name, ContactPerson_TelephoneNumber, ContactPerson_Email,
-  TransportationCompanyBuses) => 
+  BusTypeID, Brand,YearModel, Description, Number_Of_Seats, Number_Of_Seats_Per_Raw,
+  Total_Number_Of_Buses, Notes) => 
                   dispatch(postNewTransportationCompany(ID, Name, Address, Country, City, TelephoneNumber,
   ContactPerson_Name, ContactPerson_TelephoneNumber, ContactPerson_Email,
-  TransportationCompanyBuses)),
+  BusTypeID, Brand, YearModel, Description, Number_Of_Seats, Number_Of_Seats_Per_Raw, 
+  Total_Number_Of_Buses, Notes)),
   resetForm: () => { dispatch(actions.reset('newTransportationCompany'))},
   fetchCountries: () => { dispatch(fetchCountries())}, 
   fetchCities: () => { dispatch(fetchCities(1))}, 
@@ -36,6 +38,8 @@ class MainComponent extends Component {
     this.props.fetchTransportationCompanies();
     this.props.fetchCountries();
     this.props.fetchCities(1);
+    // this.props.change('newTransportationCompany.Country')
+    // this.props.dispatch(change('Country'));
   }
 
   render() {

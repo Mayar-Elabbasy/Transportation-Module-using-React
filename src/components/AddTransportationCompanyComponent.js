@@ -17,9 +17,18 @@ class AddTransportationCompanyComponent extends Component {
         this.props.postNewTransportationCompany(values.ID, values.Name, values.Address, 
                                 values.Country, values.City, values.TelephoneNumber,
                                 values.ContactPerson_Name,values.ContactPerson_TelephoneNumber,
-                                values.ContactPerson_Email, values.TransportationCompanyBuses,
+                                values.ContactPerson_Email,
+                                values.TransportationCompanyBuses[0].BusTypeID,
+                                values.TransportationCompanyBuses[0].Brand,
+                                values.TransportationCompanyBuses[0].YearModel,
+                                values.TransportationCompanyBuses[0].Description,
+                                values.TransportationCompanyBuses[0].Number_Of_Seats,
+                                values.TransportationCompanyBuses[0].Number_Of_Seats_Per_Raw,
+                                values.TransportationCompanyBuses[0].Total_Number_Of_Buses,
+                                values.TransportationCompanyBuses[0].Notes,   
                                 );
-        this.props.resetForm();
+                                alert(JSON.stringify(values))
+        // this.props.resetForm();
     }
 
     render(){
@@ -28,7 +37,7 @@ class AddTransportationCompanyComponent extends Component {
     const minLength = (len) => (val) => val && (val.length >= len);
     const isNumber = (val) => !isNaN(Number(val));
     const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
-    console.log(this.state); 
+    // console.log(this.props); 
     return(
         <div className="container px-5 py-5">
             <div className="row row-content">
@@ -53,7 +62,7 @@ class AddTransportationCompanyComponent extends Component {
                     //             console.log(error)
                     //         }); 
                     // }} 
-                    onSubmit={(values) => this.handleSubmit(values)}>
+                    onSubmit={(values) => this.handleSubmit(values)} onChange={(values)=> console.log(values.TransportationCompanyBuses[0])}>
                         <Row className="form-group">
                             <Col md={2}>
                                 <Label htmlFor="ID" md={20}>Company ID #</Label>
@@ -203,8 +212,166 @@ class AddTransportationCompanyComponent extends Component {
                             </Col>
                         </Row>
                         <Row className="form-group">
-                            <Col md={{size: 30, offset: 2}}>
-                                <Button type="submit" color="primary">
+                            <Col md={2}>
+                                <Button type="submit"
+                                 style={{ backgroundColor: "#2774AE", color: "white", textAlign: "center",
+                                          textDecoration: "none", display: "inline-block",
+                                          fontSize: "16px", padding: "10px 55px 10px 55px"}}>
+                                    ADD
+                                </Button>
+                            </Col>
+                        </Row>
+                        {/* Second Form */}
+                        <Row className="form-group">
+                            <Col md={2}>
+                                <Label htmlFor="Vehicle Type 1" md={20}>Vehicle Type 1</Label>
+                                <Control.select model=".TransportationCompanyBuses.0.BusTypeID" 
+                                    name="BusTypeID" className="form-control">
+                                    <option value="1">1</option>
+                                </Control.select>
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.BusTypeID"
+                                    show="touched"
+                                     />
+                            </Col> 
+                            <Col md={2}>
+                                <Label htmlFor="Brand" md={20}>Brand</Label>
+                                <Control.text model=".TransportationCompanyBuses.0.Brand" 
+                                    id="Brand" name="Brand" 
+                                    className="form-control" placeholder="Brand" 
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15)
+                                    }} />
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.Brand"
+                                    show="touched"
+                                    messages={{
+                                        required: ' Required',
+                                        minLength: ' Must be greater than 2 characters',
+                                        maxLength: ' Must be 15 characters or less'
+                                    }} />
+                            </Col>
+                            <Col md={2}>
+                                <Label htmlFor="YearModel" md={20}>Year Model</Label>
+                                <Control.text model=".TransportationCompanyBuses.0.YearModel" 
+                                    id="YearModel" name="YearModel" 
+                                    className="form-control" placeholder="YearModel" 
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                    }} />
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.YearModel"
+                                    show="touched"
+                                    messages={{
+                                        required: ' Required',
+                                        minLength: ' Must be greater than 2 numbers',
+                                        maxLength: ' Must be 15 numbers or less',
+                                        isNumber: ' Must be a number'
+                                    }} />
+                            </Col>
+                            <Col md={6}>
+                                <Label htmlFor="Description" md={20}>Description</Label>
+                                <Control.text model=".TransportationCompanyBuses.0.Description" 
+                                    id="Description" name="Description" 
+                                    className="form-control" placeholder="Description"
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15)
+                                    }} />
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.Description"
+                                    show="touched"
+                                    messages={{
+                                        required: ' Required',
+                                        minLength: ' Must be greater than 2 characters',
+                                        maxLength: ' Must be 15 characters or less'
+                                    }} />
+                            </Col>
+                        </Row>
+                        <Row className="form-group">
+                            <Col md={3}>
+                                <Label htmlFor="Number_Of_Seats" md={20}>Number Of Seats</Label>
+                                <Control.text model=".TransportationCompanyBuses.0.Number_Of_Seats" 
+                                    id="Number_Of_Seats" name="Number_Of_Seats" 
+                                    className="form-control" placeholder="Number_Of_Seats"
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                    }} />
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.Number_Of_Seats"
+                                    show="touched"
+                                    messages={{
+                                        required: ' Required',
+                                        minLength: ' Must be greater than 2 numbers',
+                                        maxLength: ' Must be 15 numbers or less',
+                                        isNumber: ' Must be a number'
+                                    }} />
+                            </Col>
+                            <Col md={3}>
+                                <Label htmlFor="Number_Of_Seats_Per_Raw" md={20}>Number Of Seats Per Raw</Label>
+                                <Control.text model=".TransportationCompanyBuses.0.Number_Of_Seats_Per_Raw" 
+                                    id="Number_Of_Seats_Per_Raw" name="Number_Of_Seats_Per_Raw" 
+                                    className="form-control" placeholder="Number Of Seats Per Raw"
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                    }} />
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.Number_Of_Seats_Per_Raw"
+                                    show="touched"
+                                    messages={{
+                                        required: ' Required',
+                                        minLength: ' Must be greater than 2 numbers',
+                                        maxLength: ' Must be 15 numbers or less',
+                                        isNumber: ' Must be a number'
+                                    }} />
+                            </Col>
+                            <Col md={3}>
+                                <Label htmlFor="Total_Number_Of_Buses" md={20}>Total Number Of Buses</Label>
+                                <Control.text model=".TransportationCompanyBuses.0.Total_Number_Of_Buses" 
+                                    id="Total_Number_Of_Buses" name="Total_Number_Of_Buses" 
+                                    className="form-control" placeholder="Total Number Of Buses"
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                    }} />
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.Total_Number_Of_Buses"
+                                    show="touched"
+                                    messages={{
+                                        required: ' Required',
+                                        minLength: ' Must be greater than 2 numbers',
+                                        maxLength: ' Must be 15 numbers or less',
+                                        isNumber: ' Must be a number'
+                                    }} />
+                            </Col>
+                            <Col md={6}>
+                                <Label htmlFor="Notes" md={20}>Notes</Label>
+                                <Control.text model=".TransportationCompanyBuses.0.Notes" id="Notes" 
+                                    name="Notes" placeholder="Notes" className="form-control"
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15)
+                                    }} />
+                                <Errors
+                                    className="text-danger"
+                                    model=".TransportationCompanyBuses.0.Notes"
+                                    show="touched"
+                                    messages={{
+                                        required: ' Required',
+                                        minLength: ' Must be greater than 2 characters',
+                                        maxLength: ' Must be 15 characters or less'
+                                    }} />
+                            </Col>
+                        </Row>
+                        <Row className="form-group">
+                            <Col md={2}>
+                                <Button type="submit" style={{ backgroundColor: "#2774AE", color: "white",
+                                    textAlign: "center", textDecoration: "none", display: "inline-block",
+                                    fontSize: "16px", padding: "10px 55px 10px 55px"}}>
                                     ADD
                                 </Button>
                             </Col>

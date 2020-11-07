@@ -6,6 +6,7 @@ import { fetchTransportationCompanies, postNewTransportationCompany,
 import { actions } from 'react-redux-form';
 import AllTransportationCompaniesComponent from './AllTransportationCompaniesComponent';
 import AddTransportationCompanyComponent from './AddTransportationCompanyComponent';
+import EditTransportationCompanyComponent from './EditTransportationCompanyComponent';
 import MainNavbar from '../shared/navbar';
 
 const mapStateToProps = state => {
@@ -54,6 +55,15 @@ class MainComponent extends Component {
           <Switch>
             <Route exact path='/AddTransportationCompany' 
             component={() => <AddTransportationCompanyComponent 
+            countries={this.props.countries.countries}
+            cities={this.props.cities.cities}
+            vehicleTypes={this.props.vehicleTypes.vehicleTypes}
+            resetForm={this.props.resetForm} 
+            postNewTransportationCompany={this.props.postNewTransportationCompany} />} />
+
+            <Route exact path='/EditTransportationCompany/:id' 
+            component={(props) => <EditTransportationCompanyComponent 
+              {...props}
             countries={this.props.countries.countries}
             cities={this.props.cities.cities}
             vehicleTypes={this.props.vehicleTypes.vehicleTypes}

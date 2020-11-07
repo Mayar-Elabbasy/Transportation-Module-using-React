@@ -60,11 +60,13 @@ const AllTransportationCompaniesComponent = (props) => {
                                 <td>{transportationCompany.Name}</td>
                                 <td>{transportationCompany.TotalFleet}</td>
                                 <td style={{textAlign: "center"}}>
-                                    <Button style={{ backgroundColor: "#2774AE", color: "white", 
-                                                     textAlign: "center",textDecoration: "none",
-                                                     display: "inline-block",fontSize: "16px",
-                                                     padding: "10px 60px 10px 60px" }}> Edit 
-                                    </Button>
+                                    <Link to={`/EditTransportationCompany/${transportationCompany.ID}`}>
+                                        <Button style={{ backgroundColor: "#2774AE", color: "white", 
+                                                         textAlign: "center",textDecoration: "none",
+                                                         display: "inline-block",fontSize: "16px",
+                                                         padding: "10px 60px 10px 60px" }}> Edit 
+                                        </Button>
+                                    </Link>
                                 </td>
                             </tr>
                         </tbody>

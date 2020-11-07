@@ -2,14 +2,35 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## First of all please read the following instructions in order to run the project properly:
+1. Open a new terminal by pressing on CTRL + ALT + T
 
-In the project directory, you can run:
+2. Clone the project
+you can clone the project by using the following command:
 
-### `yarn start`
+  ### `git clone https://github.com/Mayar-Elabbasy/Transportation-Module-using-React.git`
 
-Runs the app in the development mode.\
+OR you can download it as zip.
+
+2. cd into the project by using the following command:
+
+  ### `cd Transportation-Module-using-React`
+
+3. Run this command to install npm packages
+
+  ### `npm install`
+
+4. Open up the server
+
+  ### `npm start`
+
+OR
+
+  ### `yarn start`
+
+Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

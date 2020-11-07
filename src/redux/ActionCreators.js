@@ -43,9 +43,10 @@ export const addTransportationCompany = (transportationCompany) => ({
 
 export const postNewTransportationCompany = ( ID, Name, Address, Country, City, TelephoneNumber,
                                               ContactPerson_Name, ContactPerson_TelephoneNumber, 
-                                              ContactPerson_Email,TransportationCompanyBuses ) =>
-  (dispatch) => {
-    
+                                              ContactPerson_Email, BusTypeID, Brand, YearModel,
+                                              Description, Number_Of_Seats, 
+                                              Number_Of_Seats_Per_Raw, Total_Number_Of_Buses,
+                                              Notes ) => (dispatch) => {
     const newTransportationCompany = {
       ID: ID,
       Name: Name,
@@ -57,14 +58,14 @@ export const postNewTransportationCompany = ( ID, Name, Address, Country, City, 
       ContactPerson_TelephoneNumber: ContactPerson_TelephoneNumber,
       ContactPerson_Email: ContactPerson_Email,
       TransportationCompanyBuses: [{
-        BusTypeID: TransportationCompanyBuses[0].BusTypeID,
-        Brand: TransportationCompanyBuses[0].Brand,
-        YearModel: TransportationCompanyBuses[0].YearModel,
-        Description: TransportationCompanyBuses[0].Description,
-        Number_Of_Seats :TransportationCompanyBuses[0].Number_Of_Seats ,
-        Number_Of_Seats_Per_Raw: TransportationCompanyBuses[0].Number_Of_Seats_Per_Raw,
-        Total_Number_Of_Buses: TransportationCompanyBuses[0].Total_Number_Of_Buses,
-        Notes: TransportationCompanyBuses[0].Notes 
+        BusTypeID: BusTypeID,
+        Brand: Brand,
+        YearModel: YearModel,
+        Description: Description,
+        Number_Of_Seats :Number_Of_Seats ,
+        Number_Of_Seats_Per_Raw: Number_Of_Seats_Per_Raw,
+        Total_Number_Of_Buses: Total_Number_Of_Buses,
+        Notes: Notes 
       }]
     };
   
